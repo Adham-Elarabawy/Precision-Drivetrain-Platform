@@ -16,7 +16,7 @@ def sendWheelSpeeds(left_speed, right_speed):
     ser.write(left)
     serial_send(left_speed)
 
-    serial_send(right)
+    ser.write(right)
     serial_send(right_speed)
     print("Successfully sent desired wheel speeds. \n")
 

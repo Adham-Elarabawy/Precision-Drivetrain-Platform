@@ -11,8 +11,8 @@ double rightSpeed = 0;
 char side = 'l';
 
 
-AccelStepper right(1, 3, 2); // pin 3 = step, pin 6 = direction
-AccelStepper left(1, 12, 11); // pin 4 = step, pin 7 = direction
+AccelStepper left(1, 3, 2); // pin 3 = step, pin 6 = direction
+AccelStepper right(1, 12, 11); // pin 4 = step, pin 7 = direction
 
 void setup() {
   right.setMaxSpeed(maxLinearSpeed * conversionToStepPerSecond);
@@ -52,6 +52,6 @@ void loop() {
 void setWheelSpeed(double tempLeftSpeed, double tempRightSpeed) {
   leftSpeed = tempLeftSpeed;
   rightSpeed = tempRightSpeed;
-  left.setSpeed(-leftSpeed * conversionToStepPerSecond);
-  right.setSpeed(rightSpeed * conversionToStepPerSecond);
+  left.setSpeed(leftSpeed * conversionToStepPerSecond);
+  right.setSpeed(-rightSpeed * conversionToStepPerSecond);
 }
