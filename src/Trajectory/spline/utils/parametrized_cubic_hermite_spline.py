@@ -30,7 +30,7 @@ class ParametrizedCubicHermite:
 			else:
 				self.ts.append(dt * dist[i] + self.ts[i])
 
-	def __init__(self, xs, ys, dydxs, default_tangent=True):
+	def __init__(self, xs, ys, dydxs, dydx_mag=None, default_tangent=True):
 
 		assert len(xs) == len(ys)
 
@@ -39,6 +39,12 @@ class ParametrizedCubicHermite:
 		self.vxs, self.vys, self.ts = [], [], []
 		self.dydxs = dydxs
 		self.default_tangent = default_tangent
+		if dydx_mag is None:
+			self.dydx_mag = []
+			for i in range(len(dydxs)):
+				self.dydx_mag.append(1)
+		else:
+			self.dydx_mag = dydx_mag
 
 		dist = []
 		sum = 0
@@ -54,14 +60,14 @@ class ParametrizedCubicHermite:
 			else:
 				self.ts.append(dt * dist[i] + self.ts[i])
 
-		self.vxs.append(1)
+		self.vxs.append(self.dydx_mag[0])
 		for i in range(len(dydxs)):
 			size = math.sqrt((dydxs[i])**2 + 1)
-			self.vys.append(dydxs[i] / size)
+			self.vys.append(dydxs[i] * self.dydx_mag[i] / size)
 			if i != 0 and xs[i] > xs[i - 1]:
-				self.vxs.append(1 / size)
+				self.vxs.append(self.dydx_mag[i] / size)
 			elif i != 0:
-				self.vxs.append(-1 / size)
+				self.vxs.append(-self.dydx_mag[i] / size)
 
 
 	def get_spline(self):

@@ -5,6 +5,7 @@ import matplotlib.patches as patches
 from matplotlib.widgets import Button
 import utils.parametrized_cubic_hermite_spline as spline_generator
 import utils.draggable_points as draggable_points
+import math
 
 def add_point(event):
     global dr, ax, c_spline
@@ -71,7 +72,8 @@ def on_mouse_move(event):
             c_spline.dydxs.append(0)
         dydx = (dr.current_artist.get_center()[1] - event.ydata) / (dr.current_artist.get_center()[0] - event.xdata)
         c_spline.dydxs[dr.current_index] = dydx
-        c_spline = spline_generator.ParametrizedCubicHermite(dr.xs, dr.ys, c_spline.dydxs, default_tangent=c_spline.default_tangent)
+        c_spline.dydx_mag[dr.current_index] = math.sqrt( (dr.current_artist.get_center()[0] - event.xdata)**2 + (dr.current_artist.get_center()[1] - event.ydata)**2 )
+        c_spline = spline_generator.ParametrizedCubicHermite(dr.xs, dr.ys, c_spline.dydxs, dydx_mag=c_spline.dydx_mag, default_tangent=c_spline.default_tangent)
         spline = c_spline.get_spline()
         ax.plot(spline[0], spline[1], color = 'b')
         if len(ax.lines) > 1:
