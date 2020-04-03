@@ -19,7 +19,7 @@ void setup() {
   left.setMaxSpeed(maxLinearSpeed * conversionToStepPerSecond);
   right.setSpeed(0);
   left.setSpeed(0);
-  Serial.begin(9600);
+  Serial.begin(57600);
 }
 
 void loop() {

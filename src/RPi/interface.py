@@ -1,7 +1,7 @@
 import serial
 port = "/dev/ttyUSB0"
 
-ser = serial.Serial(port,9600)
+ser = serial.Serial(port,57600)
 ser.flushInput()
 
 #constants
