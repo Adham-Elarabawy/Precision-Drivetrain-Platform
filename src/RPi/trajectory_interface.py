@@ -5,9 +5,9 @@ import time
 
 arduino = Interface()
 
-waypoints = [Pose(0,0,0), Pose(20,20,90)]
+waypoints = [Pose(0,0,0), Pose(70, 30, 90)]
 path = Path(waypoints)
-robot = Robot(138.6 * 0.03937, 40, 5)
+robot = Robot(190 * 0.03937, 20, 5)
 trajectory = Trajectory(robot, path)
 
 traj_time = time.time()

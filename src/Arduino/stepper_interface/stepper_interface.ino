@@ -1,8 +1,8 @@
 #include <AccelStepper.h>
 
 const int stepsPerRevolution = 6400;
-const double wheelCircumference = 8.66; // inches
-const double maxLinearSpeed = 43.28; // inches / second
+const double wheelCircumference = 7.6; // inches (8.66)
+const double maxLinearSpeed = 8; // inches / second
 const double conversionToStepPerSecond = (1/wheelCircumference) * stepsPerRevolution; // converts from in/s to step/s
 
 double leftSpeed = 0;

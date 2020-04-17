@@ -1,10 +1,9 @@
 import math
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 # from scipy.integrate import quad
 import time
 
-plt.style.use('seaborn-pastel')
 
 class Pose:
     """
